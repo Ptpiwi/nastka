@@ -1,8 +1,11 @@
 package pl.mowk.nastka;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
+@Getter
 public enum Direction {
-    L,
-    R,
-    U,
-    D
+    L('L'), R('R'), U('U'), D('D');
+    private final char asChar;
 }
