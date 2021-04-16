@@ -10,7 +10,6 @@ public class BFS {
         queue.add(startState);
     }
 
-
     public void findPath(State state, State finalState){
         solve(state, finalState);
     }

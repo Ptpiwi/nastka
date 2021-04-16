@@ -16,7 +16,6 @@ public class State {
     int[][] table;
     int width, height;
 
-
     public State(int[][] table) {
         this.height = table.length;
         this.width = table[0].length;
@@ -45,7 +44,6 @@ public class State {
         }
         return true;
     }
-
 
     public Vector<Direction> getAvailableMoves() {
         return getAvailableMovesFor(getBlank());
@@ -128,9 +126,58 @@ public class State {
         return nextState;
     }
 
+    //to jest do A-star
+    private static int idCounter = 0;
+    int id;
+
+    public State parent = null;
+    public List<Edge> neighbors;
+    public double f = Double.MAX_VALUE;
+    public double g = Double.MAX_VALUE;
+    public double h;
+
+    State(double h){
+        this.h = h;
+        this.id = idCounter++;
+    }
+    public int compareTo(State n) {
+        return Double.compare(this.f, n.f);
+    }
+    public static class Edge {
+        Edge(int weight, State state){
+            this.weight = weight;
+            this.state = state;
+        }
+        public int weight;
+        public State state;
+    }
+
+    public void addBranch(int weight, State state){
+        Edge newEdge = new Edge(weight, state);
+        neighbors.add(newEdge);
+    }
+
+    public double calculateHeuristic(Heuristic heur){
+        double heuristic = 0;
+        if (heur.equals("manh")){
+            heuristic = heur.calculateManhattan();
+        }
+        if (heur.equals("hamm")){
+            heuristic = heur.calculateHamming();
+        }
+        return heuristic;
+    }
+
+    public int[][] getTable() { return table; }
+
+    public int getWidth() { return width; }
+
+    public int getHeight() { return height; }
+
     private boolean isPosibleToMove(Direction d) {
         return getAvailableMovesFor(getBlank()).contains(d);
     }
 
 
 }
+
