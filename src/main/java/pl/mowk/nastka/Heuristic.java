@@ -1,10 +1,8 @@
 package pl.mowk.nastka;
 
-public class Heuristic {
-    public double calculateManhattan(){
-        return 0;
-    }
-    public double calculateHamming(){
-        return 0;
-    }
+public interface Heuristic {
+
+    //Retursn distance between two statese
+    public double calculateDistance(State s1, State s2);
+    public double calculateDistancePoints(Coordinates c1, Coordinates c2);
 }

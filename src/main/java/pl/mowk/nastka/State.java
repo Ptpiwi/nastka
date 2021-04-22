@@ -61,6 +61,18 @@ public class State {
         return new Coordinates();
     }
 
+    public Coordinates getCorByValue(int value) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (table[i][j] == value) {
+                    return new Coordinates(i, j);
+                }
+            }
+        }
+        System.out.println("To nie powinno się wyświetlić w tablicy nie ma zera");
+        return new Coordinates();
+    }
+
     public Vector<Direction> getAvailableMovesFor(Coordinates coordinates) {
         Vector<Direction> directions = new Vector<>();
         if (0 < coordinates.getX() && coordinates.getX() <= height - 1) directions.add(Direction.U);
@@ -72,6 +84,9 @@ public class State {
 
     private void setField(int x, int y, int value) {
         table[x][y] = value;
+    }
+    public int getFieldValue(int x, int y) {
+        return  table[x][y];
     }
 
     public List<State> getNeighbours() {
@@ -160,10 +175,10 @@ public class State {
     public double calculateHeuristic(Heuristic heur){
         double heuristic = 0;
         if (heur.equals("manh")){
-            heuristic = heur.calculateManhattan();
+            //heuristic = heur.calculateManhattan();
         }
         if (heur.equals("hamm")){
-            heuristic = heur.calculateHamming();
+            //heuristic = heur.calculateHamming();
         }
         return heuristic;
     }
