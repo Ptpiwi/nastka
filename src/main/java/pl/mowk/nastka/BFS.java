@@ -11,7 +11,6 @@ public class BFS {
 
     }
 
-
     public void findPath(State state, State finalState){
         State key = solve(state, finalState);
         if (key != null){
