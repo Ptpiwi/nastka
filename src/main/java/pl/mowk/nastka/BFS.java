@@ -11,11 +11,20 @@ public class BFS {
 
     }
 
-    public void findPath(State state, State finalState){
-        State key = solve(state, finalState);
-        if (key != null){
 
+
+    public Vector<Direction> findPath(State state, State finalState){
+        State key = solve(state, finalState);
+        Vector<Direction> directions = new Vector<>();
+        if (key != null){
+            while (!state.equals(key)){
+                State tmp = parents.get(key);
+                directions.add(
+                        key.roadToFather(tmp));
+                key = tmp;
+            }
         }
+        return directions;
     }
     public State solve(State state, State finalState){
         queue.add(state);
@@ -36,15 +45,6 @@ public class BFS {
         }
         return null;
     }
-private String reconstructPath(State start, State finalState){
-        String path = "";
-        State cur = finalState;
-        while (cur != start){
 
-            path= path;
-        }
-
-        return path;
-}
 
 }

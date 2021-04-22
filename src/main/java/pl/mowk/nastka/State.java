@@ -30,6 +30,15 @@ public class State {
         deepcopyTable(state.getTable());
     }
 
+    public Direction roadToFather(State father){
+        for (Direction d:
+                getAvailableMoves()) {
+            if (father.isEqual(move(d))) return d;
+        }
+        System.out.println("To nie powinno się pojawić błąd w drodze do syna xD");
+        return null;
+    }
+
     private void deepcopyTable(int[][] newTable) {
         for (int i = 0; i < height; i++) {
             if (width >= 0) System.arraycopy(newTable[i], 0, this.table[i], 0, width);
