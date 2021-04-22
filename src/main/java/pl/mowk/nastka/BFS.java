@@ -4,43 +4,48 @@ import java.util.*;
 
 public class BFS {
     Queue<State> queue = new LinkedList<>();
-    Map<State, Boolean> visited = new HashMap<>();
+    List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
-    public BFS(State startState){
-        queue.add(startState);
+    int counter = 0;
+    public BFS(){
+
     }
 
 
     public void findPath(State state, State finalState){
-        solve(state, finalState);
+        State key = solve(state, finalState);
+        if (key != null){
+
+        }
     }
-    public void solve(State state, State finalState){
+    public State solve(State state, State finalState){
         queue.add(state);
-        visited.put(state, true);
+        visited.add(state);
         while (!queue.isEmpty()){
             State current = queue.remove();
             List<State> neighbours = current.getNeighbours();
             for (State neighbour:
                  neighbours) {
-                if (!visited.get(neighbour)){
+                if (!visited.contains(neighbour)){
                     queue.add(neighbour);
-                    visited.put(neighbour, true);
+                    visited.add(neighbour);
                     parents.put(neighbour, current);
-                    //if (neighbour.isEqual(finalState)) return;
+                    counter ++;
+                    if (neighbour.isEqual(finalState)) return neighbour;
                 }
             }
         }
-        return;
+        return null;
     }
-    private boolean visitNeighbors(State state){
+private String reconstructPath(State start, State finalState){
+        String path = "";
+        State cur = finalState;
+        while (cur != start){
 
-        for (Direction d:
-             state.getAvailableMoves()) {
-            State tmp = state.move(d);
-            //if (tmp.isDone()) ;
-
+            path= path;
         }
-           return false;
-    }
+
+        return path;
+}
 
 }

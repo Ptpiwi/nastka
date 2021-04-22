@@ -132,5 +132,9 @@ public class State {
         return getAvailableMovesFor(getBlank()).contains(d);
     }
 
+    public Direction getMoveBetween(State state){
+        return Direction.D;
+    }
+
 
 }
