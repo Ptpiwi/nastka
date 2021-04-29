@@ -6,15 +6,14 @@ public class BFS {
     Queue<State> queue = new LinkedList<>();
     List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
+    State finalState;
     int counter = 0;
-    public BFS(){
-
-    }
 
 
 
     public Vector<Direction> findPath(State state, State finalState){
-        State key = solve(state, finalState);
+        this.finalState = finalState;
+        State key = solve(state);
         Vector<Direction> directions = new Vector<>();
         if (key != null){
             while (!state.equals(key)){
@@ -26,7 +25,7 @@ public class BFS {
         }
         return directions;
     }
-    public State solve(State state, State finalState){
+    public State solve(State state){
         queue.add(state);
         visited.add(state);
         while (!queue.isEmpty()){
