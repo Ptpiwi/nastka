@@ -107,6 +107,10 @@ public class State {
         return neighbours;
     }
 
+    private boolean isPosibleToMove(Direction d) {
+        return getAvailableMovesFor(getBlank()).contains(d);
+    }
+
 
     public State move(Direction direction) {
         State nextState = new State(this);
@@ -149,7 +153,7 @@ public class State {
         }
         return nextState;
     }
-
+    /*
     //to jest do A-star
     private static int idCounter = 0;
     int id;
@@ -198,14 +202,11 @@ public class State {
 
     public int getHeight() { return height; }
 
-    private boolean isPosibleToMove(Direction d) {
-        return getAvailableMovesFor(getBlank()).contains(d);
-    }
 
     public Direction getMoveBetween(State state){
         return Direction.D;
     }
-
+    */
 
 }
 
