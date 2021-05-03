@@ -2,10 +2,10 @@ package pl.mowk.nastka;
 
 import java.util.*;
 
-public class DFS implements GrafSearchAlgo{
+public class DFS {
     List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
-    int limit = 40;
+    int limit = 10;
 
 
     public Vector<Direction> findPath(State state, State finalState) {
@@ -26,7 +26,7 @@ public class DFS implements GrafSearchAlgo{
     }
 
     private State DLS(State current, State finalState, int depth) {
-        if (depth == 0 || current.equals(finalState)) {
+        if (current.equals(finalState)) {
             return current;
         }
         visited.add(current);

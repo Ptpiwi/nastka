@@ -2,7 +2,7 @@ package pl.mowk.nastka;
 
 import java.util.*;
 
-public class BFS implements GrafSearchAlgo {
+public class BFS {
     Queue<State> queue = new LinkedList<>();
     List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
