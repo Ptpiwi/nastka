@@ -30,10 +30,10 @@ public class State {
         deepcopyTable(state.getTable());
     }
 
-    public Direction roadToFather(State father){
+    public Direction directionToState(State father){
         for (Direction d:
                 getAvailableMoves()) {
-            if (father.isEqual(move(d))) return d;
+            if (father.equals(move(d))) return d;
         }
         System.out.println("To nie powinno się pojawić błąd w drodze do syna xD");
         return null;
@@ -45,10 +45,18 @@ public class State {
         }
     }
 
-    public boolean isEqual(State state){
+    @Override
+    public boolean equals(Object o){
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof State)) {
+            return false;
+        }
+        State s = (State) o;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (table[i][j] != state.getTable()[i][j]) return false;
+                if (table[i][j] != s.getTable()[i][j]) return false;
             }
         }
         return true;
@@ -84,8 +92,9 @@ public class State {
 
     public Vector<Direction> getAvailableMovesFor(Coordinates coordinates) {
         Vector<Direction> directions = new Vector<>();
-        if (0 < coordinates.getX() && coordinates.getX() <= height - 1) directions.add(Direction.U);
+
         if (0 <= coordinates.getX() && coordinates.getX() < height - 1) directions.add(Direction.D);
+        if (0 < coordinates.getX() && coordinates.getX() <= height - 1) directions.add(Direction.U);
         if (0 <= coordinates.getY() && coordinates.getY() < width - 1) directions.add(Direction.R);
         if (0 < coordinates.getY() && coordinates.getY() <= width - 1) directions.add(Direction.L);
         return directions;
@@ -153,60 +162,6 @@ public class State {
         }
         return nextState;
     }
-    /*
-    //to jest do A-star
-    private static int idCounter = 0;
-    int id;
-
-    public State parent = null;
-    public List<Edge> neighbors;
-    public double f = Double.MAX_VALUE;
-    public double g = Double.MAX_VALUE;
-    public double h;
-
-    State(double h){
-        this.h = h;
-        this.id = idCounter++;
-    }
-    public int compareTo(State n) {
-        return Double.compare(this.f, n.f);
-    }
-    public static class Edge {
-        Edge(int weight, State state){
-            this.weight = weight;
-            this.state = state;
-        }
-        public int weight;
-        public State state;
-    }
-
-    public void addBranch(int weight, State state){
-        Edge newEdge = new Edge(weight, state);
-        neighbors.add(newEdge);
-    }
-
-    public double calculateHeuristic(Heuristic heur){
-        double heuristic = 0;
-        if (heur.equals("manh")){
-            //heuristic = heur.calculateManhattan();
-        }
-        if (heur.equals("hamm")){
-            //heuristic = heur.calculateHamming();
-        }
-        return heuristic;
-    }
-
-    public int[][] getTable() { return table; }
-
-    public int getWidth() { return width; }
-
-    public int getHeight() { return height; }
-
-
-    public Direction getMoveBetween(State state){
-        return Direction.D;
-    }
-    */
 
 }
 

@@ -21,8 +21,17 @@ public class Astar {
 // h is the heuristic function. h(n) estimates the cost to reach goal from node n.
    */
 
-    public Vector<Direction> findPath(State start, State finalState){
-        return null;
+    public Vector<Direction> findPath(State start, State finalState, Heuristic h){
+        Vector<Direction> directions = new Vector<>();
+        State tmp = solve(start, finalState, h);
+        if (tmp == null) return null;
+        while (!tmp.equals(start)) {
+            directions.add(
+                    parents.get(tmp).directionToState(tmp));
+            tmp = parents.get(tmp);
+        }
+        Collections.reverse(directions);
+        return directions;
     }
 
     public State solve(State start, State finalState, Heuristic h){
@@ -31,7 +40,7 @@ public class Astar {
         fScore.put(start, gScore.get(start) + h.calculateDistance(start, finalState));
         while(!openset.isEmpty()){
             State current = findClosestState(h, finalState);
-            if (current.isEqual(finalState)) return current;
+            if (current.equals(finalState)) return current;
             openset.remove(current);
             for (State neighbor:
                  current.getNeighbours()) {
