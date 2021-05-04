@@ -1,17 +1,10 @@
 package pl.mowk.nastka;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 
-@Getter
-@Setter
-@ToString
 public class State {
     int[][] table;
     int width, height;
@@ -163,5 +156,25 @@ public class State {
         return nextState;
     }
 
+    public int[][] getTable() { return table; }
+
+    public int getWidth() { return width; }
+
+    public int getHeight() { return height; }
+
+    public void setTable(int[][] table) { this.table = table; }
+
+    public void setWidth(int width) { this.width = width; }
+
+    public void setHeight(int height) { this.height = height; }
+
+    @Override
+    public String toString() {
+        return "State{" +
+                "table=" + Arrays.toString(table) +
+                ", width=" + width +
+                ", height=" + height +
+                '}';
+    }
 }
 
