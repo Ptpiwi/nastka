@@ -1,10 +1,5 @@
 package pl.mowk.nastka;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Setter
-@Getter
 public class Coordinates {
     int x, y;
     public Coordinates(int x, int y){
@@ -20,4 +15,7 @@ public class Coordinates {
     public int getY() {
         return y;
     }
+
+    public void setX(int x) { this.x = x; }
+    public void setY(int y) { this.y = y; }
 }
