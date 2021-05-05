@@ -2,6 +2,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import pl.mowk.nastka.*;
 
+import java.util.Vector;
+
 public class BFSTest {
 
     @Test
@@ -12,9 +14,31 @@ public class BFSTest {
         // int[][] table = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
         State state = new State(table);
         State finalState = new State(table2);
-        DFS dfs = new DFS();
+        Astar dfs = new Astar();
         Heuristic h = new MannhatanDistance();
-        System.out.println(dfs.findPath(state, finalState));
+        Vector<Direction> d = new Vector<>();
+
+        d.add(Direction.R);
+        d.add(Direction.L);
+        d.add(Direction.D);
+        d.add(Direction.U);
+
+        Report r = dfs.findPath(state, finalState, h);
+        System.out.println(r.generateReport());
+    }
+
+
+    @Test
+    public void copr() {
+        Report report = new Report();
+        Vector<Direction> d = new Vector<>();
+        d.add(Direction.D);
+        d.add(Direction.L);
+        report.setPath(d);
+        report.setProcessedStates(123);
+        report.setVistedStates(11);
+        report.setMaxDepht(23);
+        System.out.println(report.toString());
 
     }
 }

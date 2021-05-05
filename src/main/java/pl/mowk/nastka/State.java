@@ -116,6 +116,15 @@ public class State {
         return neighbours;
     }
 
+    public List<State> getNeighbours(Vector<Direction> permutation) {
+        List<State> neighbours = new ArrayList<>();
+        for (Direction d :
+                permutation) {
+            neighbours.add(move(d));
+        }
+        return neighbours;
+    }
+
     private boolean isPosibleToMove(Direction d) {
         return getAvailableMovesFor(getBlank()).contains(d);
     }

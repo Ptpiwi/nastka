@@ -5,20 +5,34 @@ import java.util.*;
 public class DFS {
     List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
-    int limit = 10;
+    Vector<Direction> permutationtable;
+    int limit = 4;
+    int vistedStates = 0;
+    int processedStates = 0;
+    int maxDepht = 0;
 
 
-    public Vector<Direction> findPath(State state, State finalState) {
+    public Report findPath(State state, State finalState, Vector<Direction> permutationTable) {
+        Report report = new Report();
+        this.permutationtable = permutationTable;
         Vector<Direction> directions = new Vector<>();
+        long timeStart = System.nanoTime();
         State tmp = solve(state, finalState);
-        if (tmp == null) return null;
-        while (!tmp.equals(state)) {
-            directions.add(
-                    parents.get(tmp).directionToState(tmp));
-            tmp = parents.get(tmp);
+        long timeStop = System.nanoTime();
+        if (tmp != null) {
+            while (!tmp.equals(state)) {
+                directions.add(
+                        parents.get(tmp).directionToState(tmp));
+                tmp = parents.get(tmp);
+            }
+            Collections.reverse(directions);
+            report.setPath(directions);
         }
-        Collections.reverse(directions);
-        return directions;
+        report.setProcessedStates(processedStates);
+        report.setVistedStates(vistedStates);
+        report.setMaxDepht(maxDepht);
+        report.setTime((timeStop - timeStart));
+        return report;
     }
 
     public State solve(State start, State finalState){
@@ -26,12 +40,15 @@ public class DFS {
     }
 
     private State DLS(State current, State finalState, int depth) {
+        if (maxDepht < limit - depth) maxDepht = limit - depth;
+        vistedStates++;
         if (current.equals(finalState)) {
             return current;
         }
         visited.add(current);
         if (depth > 0) {
-            for (State child : current.getNeighbours()) {
+            processedStates++;
+            for (State child : current.getNeighbours(this.permutationtable)) {
                 if (!visited.contains(child)) {
                     parents.put(child, current);
                     State found = DLS(child, finalState, depth - 1);
