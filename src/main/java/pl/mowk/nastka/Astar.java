@@ -9,7 +9,7 @@ public class Astar {
     Map<State, State> parents = new HashMap<>();
     int vistedStates = 0;
     int processedStates = 0;
-    int maxDepht = 0;
+
 
 
 
@@ -32,7 +32,7 @@ public class Astar {
         }
         report.setProcessedStates(processedStates);
         report.setVistedStates(vistedStates);
-        report.setMaxDepht(maxDepht);
+        report.setMaxDepht(getMaxDepht());
         report.setTime(timeStop - timeStart);
         return report;
     }
@@ -75,6 +75,14 @@ public class Astar {
             }
         }
         return firsborn;
+    }
+    
+    private int getMaxDepht(){
+        double min = Double.MIN_VALUE;
+        for (Map.Entry<State, Double> entry : gScore.entrySet()) {
+            if (entry.getValue() > min) min = entry.getValue();
+        }
+        return (int) Math.round(min);
     }
 
 
