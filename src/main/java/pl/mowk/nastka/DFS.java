@@ -12,9 +12,10 @@ public class DFS {
     int maxDepht = 0;
 
 
-    public Report findPath(State state, State finalState, Vector<Direction> permutationTable) {
+    public Report findPath(State state, State finalState, String permutationTable) {
         Report report = new Report();
-        this.permutationtable = permutationTable;
+        FileOptions file = new FileOptions();
+        permutationtable = file.changeOrder(permutationTable);
         Vector<Direction> directions = new Vector<>();
         long timeStart = System.nanoTime();
         State tmp = solve(state, finalState);

@@ -11,8 +11,7 @@ public class BFS {
     int maxDepht = 0;
 
 
-
-    public Report findPath(State state, State finalState, Vector<Direction> permutationTable) {
+    public Report findPath(State state, State finalState, String permutationTable) {
         Report report = new Report();
         Vector<Direction> directions = new Vector<>();
         long timeStart = System.nanoTime();
@@ -35,13 +34,16 @@ public class BFS {
     }
 
 
-    public State solve(State state, State finalState, Vector<Direction> directions) {
+    public State solve(State state, State finalState, String directions) {
+        Vector<Direction> order;
+        FileOptions file = new FileOptions();
+        order = file.changeOrder(directions);
         queue.add(state);
         visited.add(state);
         while (!queue.isEmpty()) {
             State current = queue.remove();
             processedStates++;
-            List<State> neighbours = current.getNeighbours(directions);
+            List<State> neighbours = current.getNeighbours(order);
             for (State neighbour :
                     neighbours) {
                 if (!visited.contains(neighbour)) {

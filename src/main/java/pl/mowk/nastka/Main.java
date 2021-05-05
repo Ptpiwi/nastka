@@ -31,40 +31,28 @@ public class Main {
         Astar astr = new Astar();
         MannhatanDistance manh = new MannhatanDistance();
         EuclideanDistance euclid = new EuclideanDistance();
-        Vector<Direction> result;
-
+        Report result;
         if (alg.equals("bfs")) {
-            result = bfs.findPath(state,finalState);
-            StringBuilder test = new StringBuilder();
-            for (Direction d : result){
-                test.append(d);
-            }
-            files.saveToFile(resPath,result.size(),test.toString());
+            result = bfs.findPath(state,finalState,order);
+            //????????????????
+            files.saveToFile(resPath,result.getPath().size(),result.toString());
+            files.saveToFile2(statPath,result.generateReport());
         }
         if (alg.equals("dfs")) {
-            result = dfs.findPath(state, finalState);
-            StringBuilder test1 = new StringBuilder();
-            for (Direction d : result){
-                test1.append(d);
-            }
-            files.saveToFile(resPath,result.size(),test1.toString());
+            result = dfs.findPath(state, finalState,order);
+            files.saveToFile(resPath,result.getPath().size(),result.toString());
+            files.saveToFile2(statPath,result.generateReport());
         }
         if (alg.equals("astr")) {
             if (order.equals("manh")){
                 result = astr.findPath(state,finalState,manh);
-                StringBuilder test1 = new StringBuilder();
-                for (Direction d : result){
-                    test1.append(d);
-                }
-                files.saveToFile(resPath,result.size(),test1.toString());
+                files.saveToFile(resPath,result.getPath().size(),result.toString());
+                files.saveToFile2(statPath,result.generateReport());
             }
             if (order.equals("hamm")){
                 result = astr.findPath(state,finalState,euclid);
-                StringBuilder test1 = new StringBuilder();
-                for (Direction d : result){
-                    test1.append(d);
-                }
-                files.saveToFile(resPath,result.size(),test1.toString());
+                files.saveToFile(resPath,result.getPath().size(),result.toString());
+                files.saveToFile2(statPath,result.generateReport());
             }
 
         }
