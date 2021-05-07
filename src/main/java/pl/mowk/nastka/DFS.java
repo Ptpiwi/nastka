@@ -6,7 +6,7 @@ public class DFS {
     List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
     Vector<Direction> permutationtable;
-    int limit = 4;
+    int limit = 20;
     int vistedStates = 0;
     int processedStates = 0;
     int maxDepht = 0;

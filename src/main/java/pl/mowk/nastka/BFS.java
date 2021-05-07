@@ -8,7 +8,7 @@ public class BFS {
     Map<State, State> parents = new HashMap<>();
     int vistedStates = 0;
     int processedStates = 0;
-    int maxDepht = 0;
+
 
 
     public Report findPath(State state, State finalState, String permutationTable) {
@@ -25,10 +25,10 @@ public class BFS {
             }
             Collections.reverse(directions);
             report.setPath(directions);
+            report.setMaxDepht(directions.size());
         }
         report.setProcessedStates(processedStates);
         report.setVistedStates(vistedStates);
-        report.setMaxDepht(maxDepht);
         report.setTime(timeStop - timeStart);
         return report;
     }
