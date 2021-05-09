@@ -42,7 +42,7 @@ public class Report {
     }
 
     public double getTime() {
-        return time;
+        return time*10e-10;
     }
 
     public void setTime(long time) {

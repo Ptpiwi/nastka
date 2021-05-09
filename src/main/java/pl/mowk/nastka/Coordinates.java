@@ -1,21 +1,21 @@
 package pl.mowk.nastka;
 
 public class Coordinates {
-    int x, y;
-    public Coordinates(int x, int y){
+    byte x, y;
+    public Coordinates(byte x, byte y){
         this.x=x;
         this.y=y;
     }
     public Coordinates(){}
 
-    public int getX() {
+    public byte getX() {
         return x;
     }
 
-    public int getY() {
+    public byte getY() {
         return y;
     }
 
-    public void setX(int x) { this.x = x; }
-    public void setY(int y) { this.y = y; }
+    public void setX(byte x) { this.x = x; }
+    public void setY(byte y) { this.y = y; }
 }

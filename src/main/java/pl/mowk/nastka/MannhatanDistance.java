@@ -6,8 +6,8 @@ public class MannhatanDistance implements Heuristic {
 
     public double calculateDistance(State s1, State s2) {
         double distance = 0;
-        for (int i = 0; i < s1.getHeight(); i++) {
-            for (int j = 0; j < s1.getWidth(); j++) {
+        for (byte i = 0; i < s1.getHeight(); i++) {
+            for (byte j = 0; j < s1.getWidth(); j++) {
                 int s1value = s1.getFieldValue(i, j);
                 if (s1value != 0)
                 {

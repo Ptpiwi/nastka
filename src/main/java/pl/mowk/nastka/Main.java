@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.util.Vector;
 
 public class Main {
-
+/*
     public static void main(String[] args) throws FileNotFoundException {
         parseArgs(args);
     }
@@ -20,7 +20,7 @@ public class Main {
         int table[][] = files.FileReader(dataPath);
         int height = files.getHeight(dataPath);
         int width = files.getWidth(dataPath);
-        int[][] solution = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+        byte[][] solution = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
 
         State state = new State(table);
         state.setHeight(height);
@@ -34,7 +34,6 @@ public class Main {
         Report result;
         if (alg.equals("bfs")) {
             result = bfs.findPath(state,finalState,order);
-            //????????????????
             files.saveToFile(resPath,result.getPath().size(),result.toString());
             files.saveToFile2(statPath,result.generateReport());
         }
@@ -46,7 +45,11 @@ public class Main {
         if (alg.equals("astr")) {
             if (order.equals("manh")){
                 result = astr.findPath(state,finalState,manh);
-                files.saveToFile(resPath,result.getPath().size(),result.toString());
+                if (result.getPath() != null)   {
+                    files.saveToFile(resPath,result.getPath().size(),result.toString());
+                } else {
+                    files.saveToFile(resPath,0,"");
+                }
                 files.saveToFile2(statPath,result.generateReport());
             }
             if (order.equals("hamm")){
@@ -57,5 +60,9 @@ public class Main {
 
         }
     }
+
+ */
 }
+
+
 

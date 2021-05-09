@@ -19,7 +19,7 @@ public class StateTest {
 
     @Test
     public void copyConstructor() {
-        int[][] table = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+        byte[][] table = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
         State state = new State(table);
         State copy = new State(state);
         Assert.assertTrue(state.equals( copy));
@@ -27,10 +27,10 @@ public class StateTest {
 
     @Test
     public void availableMoves() {
-        int[][] table = {{1, 2}, {3, 4}, {5, 0}};
+        byte[][] table = {{1, 2}, {3, 4}, {5, 0}};
         State state = new State(table);
         System.out.println(state.getAvailableMoves());
-        int[][] table2 = {{0}, {1}, {2}};
+        byte[][] table2 = {{0}, {1}, {2}};
         State state2 = new State(table2);
         System.out.println(state2.getAvailableMoves());
     }
