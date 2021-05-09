@@ -3,10 +3,10 @@ package pl.mowk.nastka;
 import java.util.*;
 
 public class DFS {
-    List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
+    Map<State, Integer> visited = new HashMap<>();
     List<Direction> permutationtable;
-    int limit = 14;
+    int limit = 20;
     int vistedStates = 0;
     int processedStates = 0;
     int maxDepht = 0;
@@ -46,14 +46,14 @@ public class DFS {
         if (current.equals(finalState)) {
             return current;
         }
-        visited.add(current);
+        visited.put(current, depth);
         if (depth > 0) {
             processedStates++;
             for (State child : current.getNeighbours(this.permutationtable)) {
-                if (!visited.contains(child)) {
-                    parents.put(child, current);
+                if (visited.getOrDefault(child, limit+1) > depth) {
                     State found = DLS(child, finalState, depth - 1);
                     if (found != null) {
+                        parents.put(child, current);
                         return found;
                     }
                 }

@@ -29,7 +29,7 @@ public class Main {
         byte[][] solution = new byte[height][width];
         for (byte i = 0; i < height; i++) {
             for (byte j = 0; j < width; j++) {
-                solution[i][j]=(byte) (i*height+width);
+                solution[i][j]=(byte) ((i*height+j+1)%(height*width));
             }
         }
         System.out.println(Arrays.deepToString(table));
