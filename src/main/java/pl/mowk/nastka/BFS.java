@@ -12,10 +12,13 @@ public class BFS {
 
 
     public Report findPath(State state, State finalState, String permutationTable) {
+        List<Direction> order;
+        FileOptions file = new FileOptions();
+        order = file.changeOrder(permutationTable);
         Report report = new Report();
         Vector<Direction> directions = new Vector<>();
         long timeStart = System.nanoTime();
-        State tmp = solve(state, finalState, permutationTable);
+        State tmp = solve(state, finalState, order);
         long timeStop = System.nanoTime();
         if (tmp != null) {
             while (!tmp.equals(state)) {
@@ -34,16 +37,14 @@ public class BFS {
     }
 
 
-    public State solve(State state, State finalState, String directions) {
-        Vector<Direction> order;
-        FileOptions file = new FileOptions();
-        order = file.changeOrder(directions);
+    public State solve(State state, State finalState, List<Direction> directions) {
+
         queue.add(state);
         visited.add(state);
         while (!queue.isEmpty()) {
             State current = queue.remove();
             processedStates++;
-            List<State> neighbours = current.getNeighbours(order);
+            List<State> neighbours = current.getNeighbours(directions);
             for (State neighbour :
                     neighbours) {
                 if (!visited.contains(neighbour)) {

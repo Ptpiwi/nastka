@@ -2,12 +2,18 @@ package pl.mowk.nastka;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class Main {
-/*
-    public static void main(String[] args) throws FileNotFoundException {
-        parseArgs(args);
+
+    public static void main(String[] args) {
+        try {
+            parseArgs(args);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     private static void parseArgs(String[] args) throws FileNotFoundException {
@@ -17,51 +23,69 @@ public class Main {
         String resPath = args[3];
         String statPath = args[4];
         FileOptions files = new FileOptions();
-        int table[][] = files.FileReader(dataPath);
-        int height = files.getHeight(dataPath);
-        int width = files.getWidth(dataPath);
-        byte[][] solution = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
-
+        byte[][] table = files.fileReader(dataPath);
+        int height = table.length;
+        int width = table[0].length;
+        byte[][] solution = new byte[height][width];
+        for (byte i = 0; i < height; i++) {
+            for (byte j = 0; j < width; j++) {
+                solution[i][j]=(byte) (i*height+width);
+            }
+        }
+        System.out.println(Arrays.deepToString(table));
         State state = new State(table);
-        state.setHeight(height);
-        state.setWidth(width);
         State finalState = new State(solution);
-        BFS bfs = new BFS();
-        DFS dfs = new DFS();
-        Astar astr = new Astar();
-        MannhatanDistance manh = new MannhatanDistance();
-        EuclideanDistance euclid = new EuclideanDistance();
         Report result;
         if (alg.equals("bfs")) {
+            BFS bfs = new BFS();
             result = bfs.findPath(state,finalState,order);
-            files.saveToFile(resPath,result.getPath().size(),result.toString());
+            if (result.getPath() != null)   {
+                files.saveToFile(resPath,result.getPath().size(),result.toString());
+            } else {
+                files.saveToFile2(resPath,"-1");
+            }
             files.saveToFile2(statPath,result.generateReport());
         }
         if (alg.equals("dfs")) {
+            DFS dfs = new DFS();
             result = dfs.findPath(state, finalState,order);
-            files.saveToFile(resPath,result.getPath().size(),result.toString());
+            if (result.getPath() != null)   {
+                files.saveToFile(resPath,result.getPath().size(),result.toString());
+            } else {
+                files.saveToFile2(resPath,"-1");
+            }
             files.saveToFile2(statPath,result.generateReport());
         }
         if (alg.equals("astr")) {
+            Astar astr = new Astar();
             if (order.equals("manh")){
+                MannhatanDistance manh = new MannhatanDistance();
                 result = astr.findPath(state,finalState,manh);
                 if (result.getPath() != null)   {
                     files.saveToFile(resPath,result.getPath().size(),result.toString());
                 } else {
-                    files.saveToFile(resPath,0,"");
+                    files.saveToFile2(resPath,"-1");
                 }
                 files.saveToFile2(statPath,result.generateReport());
             }
             if (order.equals("hamm")){
+                EuclideanDistance euclid = new EuclideanDistance();
                 result = astr.findPath(state,finalState,euclid);
-                files.saveToFile(resPath,result.getPath().size(),result.toString());
+                if (result.getPath() != null)   {
+                    files.saveToFile(resPath,result.getPath().size(),result.toString());
+                } else {
+                    files.saveToFile2(resPath,"-1");
+                }
                 files.saveToFile2(statPath,result.generateReport());
             }
+
 
         }
     }
 
- */
+
+
+
 }
 
 

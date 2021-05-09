@@ -5,7 +5,7 @@ import java.util.*;
 public class DFS {
     List<State> visited = new ArrayList<>();
     Map<State, State> parents = new HashMap<>();
-    Vector<Direction> permutationtable;
+    List<Direction> permutationtable;
     int limit = 14;
     int vistedStates = 0;
     int processedStates = 0;

@@ -48,15 +48,13 @@ public class State {
         }
         State s = (State) o;
         for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (table[i][j] != s.getTable()[i][j]) return false;
-            }
+            if (!Arrays.equals(table[i], s.getTable()[i])) return false;
         }
         return true;
     }
 
-    public Vector<Direction> getAvailableMoves() {
-        return getAvailableMovesFor(getBlank());
+    public List<Direction> getAvailableMoves() {
+        return getAvailableMoves(getBlank());
     }
 
     public Coordinates getBlank() {
@@ -67,7 +65,7 @@ public class State {
                 }
             }
         }
-        System.out.println("To nie powinno się wyświetlić w tablicy nie ma zera");
+        System.out.println("To nie powinno się wyświetlić w tablicy nie ma zera xD");
         return new Coordinates();
     }
 
@@ -79,12 +77,12 @@ public class State {
                 }
             }
         }
-        System.out.println("To nie powinno się wyświetlić w tablicy nie ma zera");
+        System.out.println("To nie powinno się wyświetlić w tablicy nie ma czegos xD");
         return new Coordinates();
     }
 
-    public Vector<Direction> getAvailableMovesFor(Coordinates coordinates) {
-        Vector<Direction> directions = new Vector<>();
+    public List<Direction> getAvailableMoves(Coordinates coordinates) {
+        List<Direction> directions = new ArrayList<>();
 
         if (coordinates.getX() != height - 1) directions.add(Direction.D);
         if (0 != coordinates.getX() ) directions.add(Direction.U);
@@ -109,9 +107,9 @@ public class State {
         return neighbours;
     }
 
-    public List<State> getNeighbours(Vector<Direction> permutation) {
+    public List<State> getNeighbours(List<Direction> permutation) {
         List<State> neighbours = new ArrayList<>();
-        Vector<Direction> possibleMoves = getAvailableMoves();
+        List<Direction> possibleMoves = getAvailableMoves();
         for (Direction d :
                 permutation) {
             if (possibleMoves.contains(d)) {

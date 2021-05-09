@@ -53,13 +53,14 @@ public class Report {
         String tmp;
         if (path == null) {
             tmp = "-1 "+ "\n";
-            return tmp;
+
+        } else {
+            tmp = path.size() + "\n";
         }
-        tmp = path.size() + "\n";
         tmp = tmp + vistedStates + "\n";
         tmp = tmp + processedStates + "\n";
         tmp = tmp + maxDepht + "\n";
-        tmp = tmp + (time*10e-10) + "\n";
+        tmp = tmp + String.format("%.3f",(time*10e-6)) + "\n";
         return tmp;
     }
 
