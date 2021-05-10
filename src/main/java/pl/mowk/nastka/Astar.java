@@ -9,11 +9,6 @@ public class Astar {
     Map<State, State> parents = new HashMap<>();
     int vistedStates = 0;
     int processedStates = 0;
-
-
-
-
-
     public Report findPath(State start, State finalState, Heuristic h){
         Vector<Direction> directions = new Vector<>();
         Report report = new Report();
