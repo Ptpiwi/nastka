@@ -4,31 +4,13 @@ import pl.mowk.nastka.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 public class BFSTest {
 
 
     @Test
     public void copyConst() {
-
-            byte[][] table = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 0}, {13, 14, 15, 12}};
-            byte[][] table2 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
-            // int[][] table2 = {{1, 2, 3}, {4, 5, 0}, {7, 8, 6}};
-            // int[][] table = {{1, 2, 3}, {4, 5, 6}, {7, 8, 0}};
-            State state = new State(table);
-            State finalState = new State(table2);
-            DFS dfs = new DFS();
-            Heuristic h = new MannhatanDistance();
-            String d = "RUDL";
-
-        long timeStart = System.nanoTime();
-            System.out.println(dfs.findPath(state, finalState, d).generateReportDebug());
-        long timeStop = System.nanoTime();
-        System.out.println("Czas = " + (timeStop-timeStart)*10e-10);
 
 
     }

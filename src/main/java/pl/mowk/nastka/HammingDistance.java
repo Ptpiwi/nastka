@@ -12,8 +12,7 @@ public class HammingDistance implements Heuristic{
                 int s1value = s1.getFieldValue(i, j);
                 if (s1value != 0)
                 {
-                    Coordinates c2 = s2.getCorByValue(s1value);
-                    if (s1value != s2.getFieldValue(c2.getX(), c2.getY())) distance++;
+                    if (s1value != s2.getFieldValue(i, j)) distance++;
                 }
             }
         }

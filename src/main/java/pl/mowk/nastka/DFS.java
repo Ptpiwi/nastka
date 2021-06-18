@@ -4,7 +4,6 @@ import java.util.*;
 
 public class DFS {
     Map<State, State> parents = new HashMap<>();
-    Map<State, Integer> visited = new HashMap<>();
     List<Direction> permutationtable;
     int limit = 20;
     int vistedStates = 0;
@@ -46,17 +45,16 @@ public class DFS {
         if (current.equals(finalState)) {
             return current;
         }
-        visited.put(current, depth);
         if (depth > 0) {
             processedStates++;
             for (State child : current.getNeighbours(this.permutationtable)) {
-                if (visited.getOrDefault(child, limit+1) > depth) {
+
                     State found = DLS(child, finalState, depth - 1);
                     if (found != null) {
                         parents.put(child, current);
                         return found;
                     }
-                }
+
             }
         }
         return null;
